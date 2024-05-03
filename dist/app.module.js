@@ -13,6 +13,8 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const database_module_1 = require("./database/database.module");
 const modules_module_1 = require("./modules/modules.module");
+const repositories_module_1 = require("./repositories/repositories.module");
+const usecases_module_1 = require("./usecases/usecases.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -20,11 +22,14 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({
+                cache: true,
                 isGlobal: true,
                 envFilePath: `src/config/env/${process.env.NODE_ENV || "dev"}.env`,
             }),
             database_module_1.DatabaseModule,
             modules_module_1.ModulesModule,
+            repositories_module_1.RepositoriesModule,
+            usecases_module_1.UsecasesModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
